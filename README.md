@@ -30,6 +30,9 @@ datos de ejemplo y consultas.
 
 ## Cómo ejecutar
 
+> **Nota:** Dependiendo de tu versión de Docker Compose, puede que necesites usar `docker-compose` (Legacy) o `docker compose` (Plugin moderno).
+
+
 1.  Ejecutar:
 
     ``` bash
