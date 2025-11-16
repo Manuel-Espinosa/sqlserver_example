@@ -1,0 +1,47 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-academic
+    hostname: sqlserver
+    restart: unless-stopped
+
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "${SA_PASSWORD:-YourStrongPassword!}"
+      MSSQL_PID: Developer
+
+    ports:
+      - "1433:1433"
+
+    volumes:
+      - sql_data:/var/opt/mssql
+      - ./sql:/sql:ro
+      - ./backups:/var/opt/mssql/backups
+
+    networks:
+      - sqlserver_network
+
+  init-db:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      - sqlserver
+
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      "
+      sleep 15;
+      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P '$SA_PASSWORD' -i /sql/schema.sql &&
+      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P '$SA_PASSWORD' -i /sql/seed.sql
+      "
+
+    volumes:
+      - ./sql:/sql:ro
+    networks:
+      - sqlserver_network
+
+volumes:
+  sql_data:
+
+networks:
+  sqlserver_network:
+    driver: bridge
