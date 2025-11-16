@@ -26,6 +26,7 @@ datos de ejemplo y consultas.
 
 -   Docker
 -   Docker Compose
+-   Archivo .env (ver .env-example)
 
 ## Cómo ejecutar
 
