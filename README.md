@@ -20,7 +20,7 @@ datos de ejemplo y consultas.
 - Los estudiantes se inscriben en grupos, los cuales pertenecen a una materia. Los profesores pueden impartir uno o varios grupos, y cada profesor pertenece a un departamento, que además tiene un director asignado (también un profesor del mismo departamento).
 - El diseño permite registrar inscripciones, calificaciones, cargas docentes, estructura académica y asignación de cursos de manera flexible y normalizada.
 
-![Diagrama ER](diagrams/er_diagram.png)
+![Diagrama ER](diagrams/er_diagram.md)
 
 ## Requisitos
 
